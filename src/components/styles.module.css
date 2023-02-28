@@ -103,6 +103,10 @@ ul {
   border: none;
   border-radius: 3px;
   margin-right: 10px;
+  outline: none;
+}
+.form__input::placeholder {
+  font-family: var(--ff);
 }
 .form__btn {
   border: 1px solid #bdbcbc;

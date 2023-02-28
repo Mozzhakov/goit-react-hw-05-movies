@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import css from './styles.module.css';
 
 export const SearchForm = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
@@ -11,14 +12,17 @@ export const SearchForm = ({ onSubmit }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="w-full flex items-center gap-2">
+      <form onSubmit={handleSubmit} className={css.form}>
         <input
           type="text"
           placeholder="Enter movie name"
           value={query}
           onChange={e => setQuery(e.target.value)}
+          className={css.form__input}
         />
-        <button type="submit">Search</button>
+        <button type="submit" className={css.form__btn}>
+          Search
+        </button>
       </form>
     </div>
   );

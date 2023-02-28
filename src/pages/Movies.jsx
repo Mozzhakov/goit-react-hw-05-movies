@@ -3,8 +3,9 @@ import { useSearchParams } from 'react-router-dom';
 import { getMovies } from 'service/movieApi';
 import { SearchForm } from 'components/SearchForm';
 import { MovieList } from 'components/MovieList';
+import css from '../components/styles.module.css';
 
-export const Movies = () => {
+const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -21,10 +22,11 @@ export const Movies = () => {
     fetchMovies();
   }, [query]);
   return (
-    <>
-      <h1>Search movies</h1>
+    <div>
+      <h1 className={css.movies__title}>Search movies</h1>
       <SearchForm onSubmit={handleFormSubmit} />
-      {movies.length > 0 && <MovieList movies={movies} />}
-    </>
+      {movies && <MovieList movies={movies} />}
+    </div>
   );
 };
+export default Movies;

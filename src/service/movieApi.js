@@ -1,10 +1,13 @@
 import axios from 'axios';
-// import { toast } from 'react-toastify/dist/components';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+
 const API_KEY = '48efdd88d1650cc055b0f5a157a41228';
 
 export async function getMovies(searchQuery) {
   const BASE_URL = 'https://api.themoviedb.org/3/search/movie?';
   try {
+    Loading.pulse();
     const response = await axios.get(BASE_URL, {
       params: {
         api_key: API_KEY,
@@ -13,60 +16,41 @@ export async function getMovies(searchQuery) {
         include_adult: false,
       },
     });
-
-    // this.totalItems = response.data.total_results;
-
-    // if (this.totalItems === 0) {
-    //   return;
-    // }
+    console.log(response.data.total_results);
+    if (searchQuery && response.data.total_results === 0) {
+      return Notify.failure(`No movies with name ${searchQuery}`);
+    }
 
     return response.data.results;
   } catch (e) {
-    // toast.error('Oops... Something went wrong', {
-    //   position: 'top-right',
-    //   autoClose: 5000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: 'light',
-    // });
+    Notify.failure('Something went wrong...');
     console.log(e);
   } finally {
-    // Loading.remove();
+    Loading.remove();
   }
 }
 
 export async function getTrendMovies() {
   const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/day';
   try {
+    Loading.pulse();
     const response = await axios.get(BASE_URL, {
       params: {
         api_key: API_KEY,
       },
     });
-    console.log(response.data.results);
     return response.data.results;
   } catch (e) {
-    // toast.error('Oops... Something went wrong', {
-    //   position: 'top-right',
-    //   autoClose: 5000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: 'light',
-    // });
+    Notify.failure('Something went wrong...');
     console.log(e);
   } finally {
-    // Loading.remove();
+    Loading.remove();
   }
 }
 
 export async function getFullInfo(id) {
   try {
+    Loading.pulse();
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/${id}`,
       {
@@ -77,12 +61,16 @@ export async function getFullInfo(id) {
     );
     return response.data;
   } catch (error) {
+    Notify.failure('Something went wrong...');
     console.log(error);
+  } finally {
+    Loading.remove();
   }
 }
 
 export async function getMovieCast(id) {
   try {
+    Loading.pulse();
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/${id}/credits`,
       {
@@ -93,12 +81,16 @@ export async function getMovieCast(id) {
     );
     return response.data;
   } catch (error) {
+    Notify.failure('Something went wrong...');
     console.log(error);
+  } finally {
+    Loading.remove();
   }
 }
 
 export async function getMovieReviews(id) {
   try {
+    Loading.pulse();
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/${id}/reviews`,
       {
@@ -109,6 +101,9 @@ export async function getMovieReviews(id) {
     );
     return response.data;
   } catch (error) {
+    Notify.failure('Something went wrong...');
     console.log(error);
+  } finally {
+    Loading.remove();
   }
 }

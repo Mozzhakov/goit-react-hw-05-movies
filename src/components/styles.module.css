@@ -1,0 +1,152 @@
+:root {
+  --ff: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.container {
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.header__logo {
+  font-size: 30px;
+  font-weight: 800;
+  text-decoration: none;
+  font-family: var(--ff);
+  color: #000;
+}
+.heared__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.heared__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.heared__link {
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: var(--ff);
+  color: #000;
+}
+.activeHeared__link {
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: var(--ff);
+  color: #ff2079;
+}
+.homepage__title,
+.movies__title {
+  display: flex;
+  justify-content: center;
+  font-family: var(--ff);
+  font-size: 30px;
+  font-weight: 800;
+}
+.homepage__link {
+  display: block;
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: var(--ff);
+  color: #000;
+  margin-bottom: 10px;
+}
+.goBackBtn {
+  display: flex;
+  width: 60px;
+  justify-content: center;
+  border: 1px solid #bdbcbc;
+  border-radius: 3px;
+  background-color: #bdbcbc;
+  padding: 5px;
+  margin-bottom: 20px;
+  font-family: var(--ff);
+  text-decoration: none;
+  color: #000;
+}
+.movieCard {
+  display: flex;
+  align-items: center;
+  font-family: var(--ff);
+}
+.movieCard__img {
+  margin-right: 20px;
+}
+.movieCard__title {
+  margin: 0;
+}
+.form {
+  display: flex;
+  margin-bottom: 20px;
+}
+.form__input {
+  padding: 5px;
+  background-color: #bdbcbc;
+  height: 20px;
+  border: none;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+.form__btn {
+  border: 1px solid #bdbcbc;
+  border-radius: 3px;
+  background-color: #bdbcbc;
+  padding: 5px;
+  font-family: var(--ff);
+  text-decoration: none;
+  color: #000;
+}
+.cast__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.cast__item {
+  font-family: var(--ff);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  width: 100px;
+}
+.cast__hero {
+  margin: 0;
+}
+.additional__title {
+  font-family: var(--ff);
+
+  font-weight: 800;
+}
+.additional__link {
+  display: block;
+  font-family: var(--ff);
+  font-size: 18px;
+  text-decoration: none;
+  color: #000;
+  margin-bottom: 10px;
+}
+.reviews__errorText {
+  font-family: var(--ff);
+  font-size: 18px;
+}
+.reviews__list {
+  font-family: var(--ff);
+  font-size: 18px;
+}

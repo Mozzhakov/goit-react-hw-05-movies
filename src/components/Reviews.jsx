@@ -1,28 +1,37 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieReviews } from 'service/movieApi';
+import { nanoid } from 'nanoid';
+import css from './styles.module.css';
 
-export const Reviews = () => {
+const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const { movieId } = useParams();
   useEffect(() => {
     async function fetchMovieReviews() {
       const response = await getMovieReviews(movieId);
-      console.log(response);
-      setReviews(response);
+      setReviews(response.results);
     }
     fetchMovieReviews();
   }, [movieId]);
   return (
-    <ul>
-      {reviews.map(el => {
-        return (
-          <li>
-            <h4>Author: {el.name}</h4>
-            <p>{el.content}</p>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      {reviews.length > 0 ? (
+        <ul className={css.reviews__list}>
+          {reviews.map(el => {
+            return (
+              <li key={nanoid()}>
+                <b>Author: {el.author}</b>
+                <p>{el.content}</p>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p className={css.reviews__errorText}>No reviews yet</p>
+      )}
+    </>
   );
 };
+
+export default Reviews;
